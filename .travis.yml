@@ -20,6 +20,8 @@ branches:
     - /^dev-.+/
 
 before_install:
+  - sudo apt-get install -y dbus
+  - sudo sh -c 'dbus-uuidgen > /var/lib/dbus/machine-id'
   - nvm install 7
   - OLD_VERSION=`mvn help:evaluate -Dexpression=project.version 2>/dev/null | grep -Ev "(^\[|Download\w+:)"`
   - NEW_VERSION=${OLD_VERSION%-SNAPSHOT}-dev-`printf %d $TRAVIS_BUILD_NUMBER`
