@@ -1548,4 +1548,41 @@ public class TArrays extends TObject {
             out.append(TObject.wrap(a));
         }
     }
+
+    public static TSpliterator.OfDouble spliterator(double[] array) {
+        return TSpliterators.spliterator(array, TSpliterator.IMMUTABLE | TSpliterator.ORDERED);
+    }
+
+    public static TSpliterator.OfDouble spliterator(double[] array,
+            int startInclusive, int endExclusive) {
+        return TSpliterators.spliterator(array, startInclusive, endExclusive,
+                TSpliterator.IMMUTABLE | TSpliterator.ORDERED);
+    }
+
+    public static TSpliterator.OfInt spliterator(int[] array) {
+        return TSpliterators.spliterator(array, TSpliterator.IMMUTABLE | TSpliterator.ORDERED);
+    }
+
+    public static TSpliterator.OfInt spliterator(int[] array, int startInclusive, int endExclusive) {
+        return TSpliterators.spliterator(array, startInclusive, endExclusive,
+                TSpliterator.IMMUTABLE | TSpliterator.ORDERED);
+    }
+
+    public static TSpliterator.OfLong spliterator(long[] array) {
+        return TSpliterators.spliterator(array, TSpliterator.IMMUTABLE | TSpliterator.ORDERED);
+    }
+
+    public static TSpliterator.OfLong spliterator(long[] array, int startInclusive, int endExclusive) {
+        return TSpliterators.spliterator(array, startInclusive, endExclusive,
+                TSpliterator.IMMUTABLE | TSpliterator.ORDERED);
+    }
+
+    public static <T> TSpliterator<T> spliterator(T[] array) {
+        return TSpliterators.spliterator(array, TSpliterator.IMMUTABLE | TSpliterator.ORDERED);
+    }
+
+    public static <T> TSpliterator<T> spliterator(T[] array, int startInclusive, int endExclusive) {
+        return TSpliterators.spliterator(array, startInclusive, endExclusive,
+                TSpliterator.IMMUTABLE | TSpliterator.ORDERED);
+    }
 }

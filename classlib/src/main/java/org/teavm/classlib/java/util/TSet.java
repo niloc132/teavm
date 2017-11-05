@@ -21,4 +21,8 @@ package org.teavm.classlib.java.util;
  * @param <E>
  */
 public interface TSet<E> extends TCollection<E> {
+    @Override
+    default TSpliterator<E> spliterator() {
+        return TSpliterators.spliterator(this, TSpliterator.DISTINCT);
+    }
 }

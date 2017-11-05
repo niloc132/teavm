@@ -46,4 +46,9 @@ public interface TCollection<E> extends TIterable<E> {
     boolean retainAll(TCollection<?> c);
 
     void clear();
+
+    @Override
+    default TSpliterator<E> spliterator() {
+        return TSpliterators.spliterator(this, 0);
+    }
 }

@@ -16,6 +16,8 @@
 package org.teavm.classlib.java.lang;
 
 import org.teavm.classlib.java.util.TIterator;
+import org.teavm.classlib.java.util.TSpliterator;
+import org.teavm.classlib.java.util.TSpliterators;
 import org.teavm.classlib.java.util.function.TConsumer;
 
 /**
@@ -25,6 +27,10 @@ import org.teavm.classlib.java.util.function.TConsumer;
  */
 public interface TIterable<T> {
     TIterator<T> iterator();
+
+    default TSpliterator<T> spliterator() {
+        return TSpliterators.spliteratorUnknownSize(iterator(), 0);
+    }
 
     default void forEach(TConsumer<? super T> consumer) {
         for (TIterator<T> it = iterator(); it.hasNext();) {

@@ -40,4 +40,9 @@ public interface TList<E> extends TCollection<E> {
     TListIterator<E> listIterator(int index);
 
     TList<E> subList(int fromIndex, int toIndex);
+
+    @Override
+    default TSpliterator<E> spliterator() {
+        return TSpliterators.spliterator(this, TSpliterator.ORDERED);
+    }
 }
