@@ -16,6 +16,7 @@
 package org.teavm.classlib.java.lang;
 
 import org.teavm.classlib.java.util.TIterator;
+import org.teavm.classlib.java.util.function.TConsumer;
 
 /**
  *
@@ -24,4 +25,10 @@ import org.teavm.classlib.java.util.TIterator;
  */
 public interface TIterable<T> {
     TIterator<T> iterator();
+
+    default void forEach(TConsumer<? super T> consumer) {
+        for (TIterator<T> it = iterator(); it.hasNext();) {
+            consumer.accept(it.next());
+        }
+    }
 }

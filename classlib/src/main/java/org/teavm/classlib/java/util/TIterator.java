@@ -15,6 +15,8 @@
  */
 package org.teavm.classlib.java.util;
 
+import java.util.function.Consumer;
+
 /**
  *
  * @author Alexey Andreev
@@ -25,5 +27,13 @@ public interface TIterator<E> {
 
     E next();
 
-    void remove();
+    default void remove() {
+        throw new UnsupportedOperationException();
+    }
+    
+    default void forEachRemaining(Consumer<? super E> consumer) {
+        while (this.hasNext()) {
+            consumer.accept(this.next());
+        }
+    }
 }
