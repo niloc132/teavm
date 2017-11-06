@@ -16,6 +16,8 @@
 package org.teavm.classlib.java.util;
 
 import org.teavm.classlib.java.lang.TIterable;
+import org.teavm.classlib.java.util.stream.TStream;
+import org.teavm.classlib.java.util.stream.TStreamSupport;
 
 /**
  *
@@ -50,5 +52,9 @@ public interface TCollection<E> extends TIterable<E> {
     @Override
     default TSpliterator<E> spliterator() {
         return TSpliterators.spliterator(this, 0);
+    }
+
+    default TStream<E> stream() {
+        return TStreamSupport.stream(spliterator(), false);
     }
 }

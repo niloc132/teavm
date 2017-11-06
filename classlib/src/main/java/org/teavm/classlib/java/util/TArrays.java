@@ -29,6 +29,11 @@ import org.teavm.classlib.java.lang.TObject;
 import org.teavm.classlib.java.lang.TString;
 import org.teavm.classlib.java.lang.TStringBuilder;
 import org.teavm.classlib.java.lang.reflect.TArray;
+import org.teavm.classlib.java.util.stream.TDoubleStream;
+import org.teavm.classlib.java.util.stream.TIntStream;
+import org.teavm.classlib.java.util.stream.TLongStream;
+import org.teavm.classlib.java.util.stream.TStream;
+import org.teavm.classlib.java.util.stream.TStreamSupport;
 
 public class TArrays extends TObject {
     public static char[] copyOf(char[] array, int length) {
@@ -1584,5 +1589,37 @@ public class TArrays extends TObject {
     public static <T> TSpliterator<T> spliterator(T[] array, int startInclusive, int endExclusive) {
         return TSpliterators.spliterator(array, startInclusive, endExclusive,
                 TSpliterator.IMMUTABLE | TSpliterator.ORDERED);
+    }
+
+    public static TDoubleStream stream(double[] array) {
+        return stream(array, 0, array.length);
+    }
+
+    public static TDoubleStream stream(double[] array, int startInclusive, int endExclusive) {
+        return TStreamSupport.doubleStream(spliterator(array, startInclusive, endExclusive), false);
+    }
+
+    public static TIntStream stream(int[] array) {
+        return stream(array, 0, array.length);
+    }
+
+    public static TIntStream stream(int[] array, int startInclusive, int endExclusive) {
+        return TStreamSupport.intStream(spliterator(array, startInclusive, endExclusive), false);
+    }
+
+    public static TLongStream stream(long[] array) {
+        return stream(array, 0, array.length);
+    }
+
+    public static TLongStream stream(long[] array, int startInclusive, int endExclusive) {
+        return TStreamSupport.longStream(spliterator(array, startInclusive, endExclusive), false);
+    }
+
+    public static <T> TStream<T> stream(T[] array) {
+        return stream(array, 0, array.length);
+    }
+
+    public static <T> TStream<T> stream(T[] array, int startInclusive, int endExclusive) {
+        return TStreamSupport.stream(spliterator(array, startInclusive, endExclusive), false);
     }
 }
